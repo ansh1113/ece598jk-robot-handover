@@ -1,4 +1,4 @@
-# ECE598JK — Vision-Based Robot Manipulation with LLM-Guided Handover
+# ECE598JK - Vision-Based Robot Manipulation with LLM-Guided Handover
 
 **UIUC ECE598JK Final Project**
 
@@ -8,11 +8,11 @@ A MuJoCo simulation of the Unitree G1 humanoid robot performing vision-based pic
 
 The system integrates three pipelines:
 
-1. **Vision** — YOLOv8 detects a cup and table from the robot's onboard camera; depth rendering back-projects pixel coordinates to world-frame positions with temporal smoothing and domain randomization for sim-to-real robustness.
+1. **Vision** - YOLOv8 detects a cup and table from the robot's onboard camera; depth rendering back-projects pixel coordinates to world-frame positions with temporal smoothing and domain randomization for sim-to-real robustness.
 
-2. **LLM Planning** — Claude (Anthropic API) receives a natural-language task description and a live scene description, then generates a step-by-step action plan that the robot executes via a simple parser.
+2. **LLM Planning** - Claude (Anthropic API) receives a natural-language task description and a live scene description, then generates a step-by-step action plan that the robot executes via a simple parser.
 
-3. **Human Handover** — MediaPipe tracks the operator's hand in real time from a laptop webcam. The robot arm mirrors the hand's lateral position and releases the object when a sustained grasp gesture is detected.
+3. **Human Handover** - MediaPipe tracks the operator's hand in real time from a laptop webcam. The robot arm mirrors the hand's lateral position and releases the object when a sustained grasp gesture is detected.
 
 ## Structure
 
