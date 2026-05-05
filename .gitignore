@@ -1,0 +1,34 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.egg-info/
+.eggs/
+dist/
+build/
+.venv/
+venv/
+env/
+
+# MuJoCo / simulation
+*.pt
+MUJOCO_LOG.TXT
+worker_ws/extra/MUJOCO_LOG.TXT
+
+# Logs
+worker_ws/log/
+*.log
+
+# Archives
+*.zip
+
+# IDE
+.vscode/
+.idea/
+
+# Claude Code local settings
+.claude/
+
+# OS
+.DS_Store
+Thumbs.db

@@ -1,0 +1,6 @@
+[submodule "worker_ws/src/ai_worker"]
+	path = worker_ws/src/ai_worker
+	url = https://github.com/ROBOTIS-GIT/ai_worker.git
+[submodule "worker_ws/src/robotis_mujoco_menagerie"]
+	path = worker_ws/src/robotis_mujoco_menagerie
+	url = https://github.com/ROBOTIS-GIT/robotis_mujoco_menagerie.git

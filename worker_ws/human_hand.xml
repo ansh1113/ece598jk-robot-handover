@@ -1,0 +1,141 @@
+<mujoco model="human_hand_v2">
+  <option gravity="0 0 -9.81" timestep="0.002"/>
+  
+  <visual>
+    <headlight ambient="0.4 0.4 0.4" diffuse="0.6 0.6 0.6" specular="0.2 0.2 0.2"/>
+    <rgba haze="0.15 0.25 0.35 1"/>
+    <quality shadowsize="4096"/>
+  </visual>
+
+  <asset>
+    <material name="metal" rgba="0.8 0.8 0.85 1" shininess="0.5" reflectance="0.5"/>
+    <material name="dark_metal" rgba="0.2 0.2 0.2 1" shininess="0.3"/>
+    <material name="marker" rgba="0.0 1.0 0.0 1" emission="0.5"/>
+    <material name="accent" rgba="1.0 0.5 0.0 1" emission="0.2"/>
+    <texture type="skybox" builtin="gradient" rgb1="0.3 0.5 0.7" rgb2="0 0 0" width="512" height="307"/>
+  </asset>
+  
+  <worldbody>
+    <light pos="0 0 3" dir="0 0 -1" directional="true"/>
+    <geom name="floor" type="plane" size="5 5 0.1" rgba="0.15 0.15 0.15 1"/>
+    
+    <body name="pedestal" pos="0 0 0">
+      <geom type="cylinder" size="0.12 0.02" pos="0 0 0.02" material="dark_metal"/>
+      <geom type="cylinder" size="0.08 0.6" pos="0 0 0.6" material="dark_metal"/>
+      
+      <body name="shoulder_mount" pos="0 0 1.2">
+        <geom type="sphere" size="0.1" material="metal"/>
+        
+        <body name="shoulder" pos="0 0 0">
+          <joint name="shoulder_swing" type="hinge" axis="0 0 1" range="-10.0 10.0" damping="8" frictionloss="0.5"/>
+          
+          <geom name="upper_arm" type="capsule" size="0.045" fromto="0 0 0 0.35 0 0" material="metal"/>
+          <geom type="cylinder" size="0.05 0.02" pos="0.15 0 0" euler="0 1.57 0" material="accent"/>
+          
+          <body name="elbow" pos="0.35 0 0" euler="0 1.0 0"> <geom type="cylinder" size="0.05 0.04" euler="1.57 0 0" material="dark_metal"/>
+             
+             <geom name="forearm" type="capsule" size="0.035" fromto="0 0 0 0.30 0 0" material="metal"/>
+             
+             <body name="wrist" pos="0.30 0 0" euler="0 -1.0 0"> <geom type="cylinder" size="0.04 0.03" euler="0 1.57 0" material="dark_metal"/>
+                
+                <body name="palm" pos="0.05 0 0">
+                  <geom type="box" size="0.045 0.01 0.045" material="metal"/>
+                  <geom name="palm_marker" type="cylinder" size="0.02 0.005" pos="0 0.01 0" material="marker" euler="1.57 0 0"/>
+                  
+                  <body name="index_mcp" pos="0.04 0 0.03">
+                    <joint name="index_mcp_joint" axis="0 0 -1" range="0 1.6" damping="0.1"/>
+                    <geom type="capsule" size="0.008" fromto="0 0 0 0.035 0 0" material="dark_metal"/>
+                    <body name="index_pip" pos="0.035 0 0">
+                      <joint name="index_pip_joint" axis="0 0 -1" range="0 1.6" damping="0.1"/>
+                      <geom type="capsule" size="0.007" fromto="0 0 0 0.025 0 0" material="metal"/>
+                      <body name="index_tip" pos="0.025 0 0">
+                        <joint name="index_dip_joint" axis="0 0 -1" range="0 1.2" damping="0.1"/>
+                        <geom type="capsule" size="0.006" fromto="0 0 0 0.02 0 0" material="accent"/>
+                      </body>
+                    </body>
+                  </body>
+
+                  <body name="middle_mcp" pos="0.045 0 0.01">
+                    <joint name="middle_mcp_joint" axis="0 0 -1" range="0 1.6" damping="0.1"/>
+                    <geom type="capsule" size="0.008" fromto="0 0 0 0.038 0 0" material="dark_metal"/>
+                    <body name="middle_pip" pos="0.038 0 0">
+                      <joint name="middle_pip_joint" axis="0 0 -1" range="0 1.6" damping="0.1"/>
+                      <geom type="capsule" size="0.007" fromto="0 0 0 0.028 0 0" material="metal"/>
+                      <body name="middle_tip" pos="0.028 0 0">
+                        <joint name="middle_dip_joint" axis="0 0 -1" range="0 1.2" damping="0.1"/>
+                        <geom type="capsule" size="0.006" fromto="0 0 0 0.02 0 0" material="accent"/>
+                      </body>
+                    </body>
+                  </body>
+
+                  <body name="ring_mcp" pos="0.04 0 -0.01">
+                    <joint name="ring_mcp_joint" axis="0 0 -1" range="0 1.6" damping="0.1"/>
+                    <geom type="capsule" size="0.007" fromto="0 0 0 0.035 0 0" material="dark_metal"/>
+                    <body name="ring_pip" pos="0.035 0 0">
+                      <joint name="ring_pip_joint" axis="0 0 -1" range="0 1.6" damping="0.1"/>
+                      <geom type="capsule" size="0.006" fromto="0 0 0 0.025 0 0" material="metal"/>
+                      <body name="ring_tip" pos="0.025 0 0">
+                        <joint name="ring_dip_joint" axis="0 0 -1" range="0 1.2" damping="0.1"/>
+                        <geom type="capsule" size="0.005" fromto="0 0 0 0.02 0 0" material="accent"/>
+                      </body>
+                    </body>
+                  </body>
+
+                  <body name="pinky_mcp" pos="0.035 0 -0.03">
+                    <joint name="pinky_mcp_joint" axis="0 0 -1" range="0 1.6" damping="0.1"/>
+                    <geom type="capsule" size="0.006" fromto="0 0 0 0.028 0 0" material="dark_metal"/>
+                    <body name="pinky_pip" pos="0.028 0 0">
+                      <joint name="pinky_pip_joint" axis="0 0 -1" range="0 1.6" damping="0.1"/>
+                      <geom type="capsule" size="0.005" fromto="0 0 0 0.018 0 0" material="metal"/>
+                      <body name="pinky_tip" pos="0.018 0 0">
+                        <joint name="pinky_dip_joint" axis="0 0 -1" range="0 1.2" damping="0.1"/>
+                        <geom type="capsule" size="0.005" fromto="0 0 0 0.015 0 0" material="accent"/>
+                      </body>
+                    </body>
+                  </body>
+
+                  <body name="thumb_cmc" pos="0.01 0 0.045" euler="0 0 0.7">
+                    <joint name="thumb_cmc_joint" axis="0 0 -1" range="0 1.0" damping="0.1"/>
+                    <geom type="capsule" size="0.009" fromto="0 0 0 0.025 0 0" material="dark_metal"/>
+                    <body name="thumb_mcp" pos="0.025 0 0">
+                      <joint name="thumb_mcp_joint" axis="0 0 -1" range="0 1.2" damping="0.1"/>
+                      <geom type="capsule" size="0.008" fromto="0 0 0 0.025 0 0" material="metal"/>
+                      <body name="thumb_tip" pos="0.025 0 0">
+                        <joint name="thumb_ip_joint" axis="0 0 -1" range="0 1.0" damping="0.1"/>
+                        <geom type="capsule" size="0.007" fromto="0 0 0 0.02 0 0" material="accent"/>
+                      </body>
+                    </body>
+                  </body>
+
+                </body>
+             </body>
+          </body>
+        </body>
+      </body>
+    </body>
+  </worldbody>
+  
+  <actuator>
+    <position name="act_shoulder_swing" joint="shoulder_swing" kp="50" ctrlrange="-10.0 10.0"/>
+    
+    <position name="act_index_mcp" joint="index_mcp_joint" kp="10" ctrlrange="0 1.6"/>
+    <position name="act_index_pip" joint="index_pip_joint" kp="8" ctrlrange="0 1.6"/>
+    <position name="act_index_dip" joint="index_dip_joint" kp="5" ctrlrange="0 1.2"/>
+    
+    <position name="act_middle_mcp" joint="middle_mcp_joint" kp="10" ctrlrange="0 1.6"/>
+    <position name="act_middle_pip" joint="middle_pip_joint" kp="8" ctrlrange="0 1.6"/>
+    <position name="act_middle_dip" joint="middle_dip_joint" kp="5" ctrlrange="0 1.2"/>
+    
+    <position name="act_ring_mcp" joint="ring_mcp_joint" kp="10" ctrlrange="0 1.6"/>
+    <position name="act_ring_pip" joint="ring_pip_joint" kp="8" ctrlrange="0 1.6"/>
+    <position name="act_ring_dip" joint="ring_dip_joint" kp="5" ctrlrange="0 1.2"/>
+    
+    <position name="act_pinky_mcp" joint="pinky_mcp_joint" kp="10" ctrlrange="0 1.6"/>
+    <position name="act_pinky_pip" joint="pinky_pip_joint" kp="8" ctrlrange="0 1.6"/>
+    <position name="act_pinky_dip" joint="pinky_dip_joint" kp="5" ctrlrange="0 1.2"/>
+    
+    <position name="act_thumb_cmc" joint="thumb_cmc_joint" kp="10" ctrlrange="0 1.0"/>
+    <position name="act_thumb_mcp" joint="thumb_mcp_joint" kp="8" ctrlrange="0 1.2"/>
+    <position name="act_thumb_ip" joint="thumb_ip_joint" kp="5" ctrlrange="0 1.0"/>
+  </actuator>
+</mujoco>
