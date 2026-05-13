@@ -1,6 +1,4 @@
-# ECE598JK - Vision-Based Robot Manipulation with LLM-Guided Handover
-
-**UIUC ECE598JK Final Project**
+# Vision-Based Robot Manipulation with LLM-Guided Handover
 
 A MuJoCo simulation of the Unitree G1 humanoid robot performing vision-based pick-and-place with autonomous LLM task planning and real-time human-robot handover via webcam gesture recognition.
 
